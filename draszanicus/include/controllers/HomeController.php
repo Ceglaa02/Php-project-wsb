@@ -16,18 +16,25 @@ class HomeController extends Controller {
     $view = new View();
     $user = User::getUser();
     $user_id = array_key_exists("id", $user) ? (int)$user["id"] : 0  ;
+    
+    
 
     if($user_id){
         $teams = self::getTeams($user_id);
         if(count($teams) > 0){
             $ButtonTeamHightlight = reset($teams)['id'];
+          
+            $view->assign("teamId" , reset($teams)['id']);
         }else{
             $ButtonTeamHightlight = 0;
+            $view->assign("teamId", 0);
+            
         }
         
     }else{
         $teams = [];
         $ButtonTeamHightlight = 0;
+        $view->assign("teamId", 0);
     }
   
     
@@ -36,13 +43,15 @@ class HomeController extends Controller {
             
             $info = $_GET['teamId'];
             $ButtonTeamHightlight = $_GET['teamId'];
+            $view->assign("teamId", $_GET['teamId']);
         }
     }
     if(!empty($_POST['action'])){
         if($_POST['action'] == 'createTeam'){
             $info = 'createTeam';
-            $this->createTeam($user_id);
-            header("Location: /");
+           $Newteam_id =  $this->createTeam($user_id);
+           $view->assign("teamId", $Newteam_id);
+            header("Location:/home/switchTeam?action=switchTeam&teamId=" .$Newteam_id);
         }
         else if($_POST['action'] == 'createPost'){
             $info = 'createPost';
@@ -67,9 +76,11 @@ class HomeController extends Controller {
 
         }else if(!empty($_POST['action'])&& $_POST['action'] == 'createPost'){
             $view->assign("posts", self::getPosts($_POST['teamIdInput']));
+            $view->assign("teamId", $_POST['teamIdInput']);
         }
         else{
             $view->assign("posts", self::getPosts(reset($teams)['id']));
+            $view->assign("teamId" , reset($teams)['id']);
         }
      
      } else {
@@ -90,8 +101,9 @@ class HomeController extends Controller {
           
             
      
-           Team::createTeam($teamName, $teamDescription, $user_id);
+          return Team::createTeam($teamName, $teamDescription, $user_id);
         }
+        return 0;
       
    }
 

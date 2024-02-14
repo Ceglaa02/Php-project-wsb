@@ -1,5 +1,4 @@
-/vendor
-/config/.env
+
 /logs/*.log
 /templates_c/*
 /sess/*

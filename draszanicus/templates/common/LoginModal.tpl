@@ -13,10 +13,10 @@
         <div class="card-body">
         <div class="row">
         <div class="col-12 input-group my-1">
-        <input class="form-control" type="text" placeholder="Login" name="inputLogin">
+        <input class="form-control" type="text" placeholder="Login" name="inputLogin" required>
         </div>
     <div class="col-12 input-group my-1">
-        <input class="form-control" type="password" placeholder="Password" name="inputPassword">
+        <input class="form-control" type="password" placeholder="Password" name="inputPassword" required>
     </div>
     </div>
     </div>
@@ -27,16 +27,16 @@
         <div class="card-body">
         <div class="row">
         <div class="col-12 input-group my-1">
-        <input class="form-control" type="text" placeholder="Login" name="inputLogin">
+        <input class="form-control" type="text" placeholder="Login" name="inputLogin" required>
         </div>
     <div class="col-12 input-group my-1">
-        <input class="form-control" type="password" placeholder="Password" name="inputPassword">
+        <input class="form-control" type="password" placeholder="Password 8 letters" name="inputPassword" required>
     </div>
     <div class="col-12 input-group my-1">
-        <input class="form-control" type="password" placeholder="Repeat Password" name="inputPasswordAgain">
+        <input class="form-control" type="password" placeholder="Repeat Password" name="inputPasswordAgain" required>
     </div>
     <div class="col-12 input-group my-1">
-        <input class="form-control" type="text" placeholder="e-mail" name="inputEmail">
+        <input class="form-control" type="text" placeholder="e-mail" name="inputEmail" required>
     </div>
     <input class="form-control" type="hidden" placeholder="e-mail" name="action" value="createUser">
     </div>

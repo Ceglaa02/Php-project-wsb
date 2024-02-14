@@ -1,7 +1,7 @@
 <div class="col-md-8 border-end border-start">
   <div class="row">
     <div class="col-md-12">
-      {if $user_id >0}
+      {if $user_id >0} {if count($teams) > 0}
       <form method="post" action="/home/createPost" id="PostForm">
         <div class="form-floating">
           <textarea
@@ -14,7 +14,12 @@
           <label for="floatingTextarea2">Create a Post</label>
         </div>
         <input type="hidden" name="action" value="createPost" />
-        <input type="hidden" name="teamIdInput" id="teamIdInput" />
+        <input
+          type="hidden"
+          name="teamIdInput"
+          id="teamIdInput"
+          value="{$teamid}"
+        />
       </form>
       {if count($posts) > 0} {foreach $posts as $post}
       <div class="card mb-3">
@@ -26,6 +31,10 @@
       {/foreach}{else}
       <div>
         <p class="card-text">this team has no posts</p>
+      </div>
+      {/if} {else}
+      <div>
+        <h3 class="card-text">Join or Create a Group to create posts</h3>
       </div>
       {/if} {else}
       <div>
